@@ -317,19 +317,20 @@
       width: 100%; height: 100%;
       background-size: cover; background-position: center; transition: transform 0.35s ease;
     }
-    .wish-item:hover .wish-img-inner { transform: scale(1.06); }
     .wish-img-placeholder {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-    }
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  pointer-events: none;
+}
     .wish-img-placeholder svg { opacity: 0.2; width: 32px; height: 32px; }
     .wish-img-placeholder span {
       font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); opacity: 0.5;
     }
     .wish-overlay {
-      position: absolute; inset: 0; background: rgba(13,11,14,0.0);
-      display: flex; align-items: center; justify-content: center; transition: background 0.25s;
-    }
+  position: absolute; inset: 0; background: rgba(13,11,14,0.0);
+  display: flex; align-items: center; justify-content: center; transition: background 0.25s;
+  pointer-events: none;
+}
     .wish-item:hover .wish-overlay { background: rgba(252,106,148,0.12); }
     .wish-overlay-icon {
       opacity: 0; transform: translateY(6px); transition: opacity 0.25s, transform 0.25s; font-size: 20px;
