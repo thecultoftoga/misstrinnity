@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miss Trinnity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    a { color: inherit; text-decoration: none; }
+
+    :root {
+      --black: #0D0A0C;
+      --deep: #1A0F14;
+      --purple: #4A1428;
+      --orchid: #FC6A94;
+      --blush: #FFA5BC;
+      --petal: #FFD6E3;
+      --cream: #FFF0F4;
+      --muted: #8a7078;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--black);
+      color: var(--cream);
+      line-height: 1.7;
+      overflow-x: hidden;
+      b { color: var(--blush); font-weight: 500; };
+      u { text-decoration: none;
+  border-bottom: 2px solid var(--blush); /* Espessura e cor da linha */
+  padding-bottom: 2px; /* Distância entre o texto e a linha */ };
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--orchid); border-radius: 2px; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(13,11,14,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 0.5px solid rgba(252,106,148,0.15);
+      padding: 0 6vw;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 400;
+      letter-spacing: 0.08em; color: var(--blush);
+    }
+    .nav-logo span {
+      display: block; font-family: 'Raleway', sans-serif;
+      font-size: 10px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--orchid);
+      margin-top: -4px; font-weight: 300;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--blush); font-weight: 300; transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; background: var(--black);
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 100px 6vw 60px;
+      position: relative; overflow: hidden; gap: 60px;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -200px; right: -100px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(252,106,148,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -100px; left: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,165,188,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--orchid); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .hero-eyebrow::before { content: ''; width: 32px; height: 0.5px; background: var(--orchid); }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(44px, 5vw, 76px);
+      font-weight: 400; line-height: 1.05; color: var(--cream); margin-bottom: 8px;
+    }
+    .hero h1 em { color: var(--blush); font-style: italic; }
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 400; font-style: italic;
+      color: var(--orchid); opacity: 0.75;
+      margin-bottom: 28px; letter-spacing: 0.04em;
+    }
+    .hero-desc {
+      font-size: 15px; color: rgba(242,217,232,0.5);
+      font-weight: 300; max-width: 500px; line-height: 1.9; margin-bottom: 44px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block; background: var(--orchid); color: var(--black);
+      padding: 14px 36px; font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; font-family: 'Raleway', sans-serif; font-weight: 500;
+      border: none; cursor: pointer; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--blush); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-block;
+      border: 0.5px solid rgba(252,106,148,0.45); color: var(--orchid);
+      padding: 14px 36px; font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; font-family: 'Raleway', sans-serif; font-weight: 300;
+      background: transparent; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: rgba(252,106,148,0.1); border-color: var(--orchid); }
+    .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; }
+    .hero-photo-frame { width: 100%; max-width: 420px; aspect-ratio: 3/4; position: relative; }
+    .hero-photo-frame::before {
+      content: ''; position: absolute; inset: -12px;
+      border: 0.5px solid rgba(252,106,148,0.25); pointer-events: none;
+    }
+    .hero-photo-frame::after {
+      content: ''; position: absolute; bottom: -24px; right: -24px;
+      width: 160px; height: 160px;
+      border: 0.5px solid rgba(255,165,188,0.18); pointer-events: none;
+    }
+    .hero-photo {
+      width: 100%; height: 100%; background: var(--deep);
+      background-image: url('https://files.catbox.moe/hrsnq1.jfif');
+      background-size: cover; background-position: center top;
+    }
+    .hero-badges {
+      position: absolute; bottom: -16px; left: -16px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .hero-badge {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      background: rgba(13,11,14,0.9); border: 0.5px solid rgba(252,106,148,0.3);
+      color: rgba(255,165,188,0.7); padding: 7px 16px; backdrop-filter: blur(8px);
+    }
+
+    /* SOBRE */
+    .section-sobre { background: var(--deep); padding: 96px 6vw; }
+    .sobre-layout {
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 80px; align-items: start; max-width: 1200px; margin: 0 auto;
+    }
+    .tag {
+      display: inline-block; font-size: 10px; letter-spacing: 0.24em;
+      text-transform: uppercase; color: var(--orchid); margin-bottom: 16px;
+      padding-bottom: 12px; border-bottom: 0.5px solid rgba(252,106,148,0.25);
+    }
+    .section-sobre h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 400; line-height: 1.2; color: var(--cream); margin-bottom: 28px;
+    }
+    .section-sobre h2 em { color: var(--blush); font-style: italic; }
+    .section-sobre p {
+      font-size: 15px; color: rgba(242,217,232,0.5);
+      font-weight: 300; line-height: 1.95; margin-bottom: 18px;
+    }
+    .section-sobre a { color: var(--blush); transition: color 0.2s; }
+    .section-sobre a:hover { color: var(--orchid); }
+    .sobre-detalhes { list-style: none; margin-top: 36px; }
+    .sobre-detalhes li {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 14px 0; border-bottom: 0.5px solid rgba(252,106,148,0.1);
+      font-size: 14px; color: var(--cream); font-weight: 300;
+    }
+    .sobre-detalhes li .icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      border: 0.5px solid rgba(252,106,148,0.3); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .sobre-detalhes li .detalhe-label {
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--orchid); display: block; margin-bottom: 2px;
+    }
+
+    /* PRESENCIAL */
+    .section-presencial { background: var(--black); padding: 96px 6vw; }
+    .presencial-header { max-width: 550px; margin-bottom: 64px; }
+    .presencial-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 400; line-height: 1.15; color: var(--cream); margin-top: 10px;
+    }
+    .presencial-header h2 em { color: var(--blush); font-style: italic; }
+    .presencial-header p {
+      font-size: 15px; color: rgba(242,217,232,0.45);
+      font-weight: 300; line-height: 1.9; margin-top: 20px;
+    }
+    .presencial-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 56px;
+    }
+    .presencial-card {
+      background: var(--deep); padding: 44px 36px; border-top: 2px solid transparent;
+      transition: border-color 0.25s, background 0.25s;
+      display: flex; flex-direction: column; cursor: pointer;
+    }
+    .presencial-card:hover { background: #1a0d14; border-top-color: var(--orchid); }
+    .presencial-card.destaque { background: var(--purple); border-top-color: var(--orchid); }
+    .presencial-card.destaque:hover { background: #4a1428; }
+    .card-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--orchid); margin-bottom: 20px;
+    }
+    .presencial-card.destaque .card-num { color: rgba(252,106,148,0.7); }
+    .presencial-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 400; line-height: 1.2; color: var(--cream); margin-bottom: 12px;
+    }
+    .presencial-card .card-para {
+      font-size: 12px; font-weight: 300; line-height: 1.7;
+      color: rgba(242,217,232,0.45); margin-bottom: 24px;
+      padding-bottom: 24px; border-bottom: 0.5px solid rgba(252,106,148,0.1);
+    }
+    .card-items { list-style: none; flex: 1; }
+    .card-items li {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 8px 0; font-size: 13px; font-weight: 300;
+      color: rgba(242,217,232,0.8); border-bottom: 0.5px solid rgba(252,106,148,0.06);
+    }
+    .card-items li::before {
+      content: ''; flex-shrink: 0; width: 4px; height: 4px;
+      border-radius: 50%; background: var(--orchid); margin-top: 8px;
+    }
+    .card-preco { margin-top: 28px; padding-top: 24px; border-top: 0.5px solid rgba(252,106,148,0.1); }
+    .preco-label {
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--orchid); display: block; margin-bottom: 6px;
+    }
+    .preco-valor {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px; font-weight: 400; color: var(--blush); line-height: 1; margin-bottom: 4px;
+    }
+    .preco-detalhe { font-size: 11px; color: rgba(242,217,232,0.3); font-weight: 300; }
+    .card-btn {
+      display: block; margin-top: 20px;
+      background: transparent; border: 0.5px solid rgba(252,106,148,0.4);
+      color: var(--orchid); padding: 12px; text-align: center;
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      font-family: 'Raleway', sans-serif; font-weight: 400; cursor: pointer; transition: all 0.2s;
+    }
+    .presencial-card.destaque .card-btn { border-color: rgba(255,165,188,0.5); color: var(--blush); }
+    .card-btn:hover { background: rgba(252,106,148,0.15); }
+    .presencial-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .info-bloco {
+      background: var(--deep); padding: 28px 32px;
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .info-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .info-bloco h4 {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blush); margin-bottom: 4px;
+    }
+    .info-bloco p { font-size: 13px; color: rgba(242,217,232,0.4); font-weight: 300; }
+
+    /* REGRAS */
+    .regras-box {
+      margin-top: 48px; border: 0.5px solid rgba(252,106,148,0.15);
+      padding: 40px 48px; background: var(--deep);
+    }
+    .regras-box .tag { margin-bottom: 24px; display: block; }
+    .regras-lista { list-style: none; }
+    .regra-item {
+      display: flex; gap: 16px; padding: 14px 0;
+      border-bottom: 0.5px solid rgba(252,106,148,0.08);
+      font-size: 14px; color: rgba(255,240,244,0.7);
+      font-weight: 300; line-height: 1.7; align-items: flex-start;
+    }
+    .regra-item:last-child { border-bottom: none; }
+    .regra-item .r-icon { color: var(--orchid); font-size: 14px; flex: 0 0 16px; margin-top: 4px; }
+    .regra-item p { flex: 1; min-width: 0; margin: 0; }
+    .regra-item p strong { color: var(--blush); font-weight: 500; }
+
+    /* WISHLIST */
+    .section-wishlist { background: var(--black); padding: 96px 6vw; }
+    .wishlist-header { max-width: 600px; margin-bottom: 56px; }
+    .wishlist-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 400; line-height: 1.15; color: var(--cream); margin-top: 10px;
+    }
+    .wishlist-header h2 em { color: var(--blush); font-style: italic; }
+    .wishlist-header p {
+      font-size: 14px; color: rgba(242,217,232,0.4); font-weight: 300;
+      line-height: 1.8; margin-top: 16px;
+    }
+    .wishlist-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    .wish-item { display: flex; flex-direction: column; cursor: pointer; transition: transform 0.25s; }
+    .wish-item:hover { transform: translateY(-4px); }
+    .wish-img {
+      aspect-ratio: 1/1; overflow: hidden; position: relative;
+      background: var(--deep); border: 0.5px solid rgba(252,106,148,0.1);
+    }
+    .wish-img a { display: block; width: 100%; height: 100%; }
+    .wish-img-inner {
+      width: 100%; height: 100%;
+      background-size: cover; background-position: center; transition: transform 0.35s ease;
+    }
+    .wish-item:hover .wish-img-inner { transform: scale(1.06); }
+    .wish-img-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    }
+    .wish-img-placeholder svg { opacity: 0.2; width: 32px; height: 32px; }
+    .wish-img-placeholder span {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); opacity: 0.5;
+    }
+    .wish-overlay {
+      position: absolute; inset: 0; background: rgba(13,11,14,0.0);
+      display: flex; align-items: center; justify-content: center; transition: background 0.25s;
+    }
+    .wish-item:hover .wish-overlay { background: rgba(252,106,148,0.12); }
+    .wish-overlay-icon {
+      opacity: 0; transform: translateY(6px); transition: opacity 0.25s, transform 0.25s; font-size: 20px;
+    }
+    .wish-item:hover .wish-overlay-icon { opacity: 1; transform: translateY(0); }
+    .wish-info { padding: 12px 4px 0; }
+    .wish-info h4 { font-size: 13px; font-weight: 400; color: var(--cream); line-height: 1.35; }
+    .wish-info .wish-loja {
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--orchid); margin-top: 4px; font-weight: 300;
+    }
+
+    /* LOJA */
+    .section-loja { background: var(--deep); padding: 96px 6vw; }
+    .loja-header { max-width: 600px; margin-bottom: 56px; }
+    .loja-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 400; line-height: 1.15; color: var(--cream); margin-top: 10px;
+    }
+    .loja-header h2 em { color: var(--blush); font-style: italic; }
+    .loja-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+    .loja-item {
+      background: var(--black); cursor: pointer; transition: background 0.2s;
+      display: flex; flex-direction: column; min-height: 180px;
+    }
+    .loja-item:hover { background: #0f080c; }
+    .loja-info { padding: 20px 20px 24px; display: flex; flex-direction: column; flex: 1; }
+    .loja-info h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px; font-weight: 400; color: var(--cream); margin-bottom: 6px;
+    }
+    .loja-info .loja-desc {
+      font-size: 12px; color: rgba(242,217,232,0.35); font-weight: 300; line-height: 1.6; margin-bottom: 16px;
+    }
+    .loja-preco {
+      display: flex; align-items: baseline; gap: 10px; justify-content: space-between; margin-top: auto;
+    }
+    .loja-valor { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--blush); }
+    .loja-btn {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--orchid); border-bottom: 0.5px solid rgba(252,106,148,0.35);
+      padding-bottom: 2px; font-weight: 400; transition: color 0.2s;
+    }
+    .loja-btn:hover { color: var(--blush); }
+    .loja-badge-top {
+      display: inline-block; align-self: flex-start;
+      font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+      background: var(--orchid); color: var(--black); padding: 4px 10px; margin-bottom: 12px;
+    }
+
+    /* CTA */
+    .section-cta {
+      background: var(--purple); padding: 96px 6vw; text-align: center; position: relative; overflow: hidden;
+    }
+    .section-cta::before {
+      content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(252,106,148,0.25) 0%, transparent 70%); pointer-events: none;
+    }
+    .section-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.5vw, 52px);
+      font-weight: 400; color: var(--cream); line-height: 1.2;
+      margin-bottom: 20px; position: relative; z-index: 1;
+    }
+    .section-cta h2 em { color: ; font-style: italic; }
+    .section-cta p {
+      font-size: 15px; color: rgba(242,217,232,0.55); font-weight: 300;
+      margin-bottom: 44px; position: relative; z-index: 1;
+    }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+    /* FOOTER */
+    footer {
+      background: var(--black); border-top: 0.5px solid rgba(252,106,148,0.12);
+      padding: 48px 6vw; display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 20px;
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--blush); letter-spacing: 0.06em; }
+    footer span { font-size: 11px; letter-spacing: 0.12em; color: var(--muted); font-weight: 300; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted) ; font-weight: 300; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--blush); }
+
+    /* DIVIDER */
+    .divider {
+      width: 100%; height: 0.5px;
+      background: linear-gradient(90deg, transparent, rgba(252,106,148,0.3), transparent);
+    }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-top: 110px; text-align: center; }
+      .hero-visual { order: -1; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-desc { margin: 0 auto 40px; }
+      .hero-btns { justify-content: center; }
+      .hero-badges { display: none; }
+      .sobre-layout { grid-template-columns: 1fr; gap: 48px; }
+      .presencial-grid { grid-template-columns: 1fr; }
+      .presencial-info { grid-template-columns: 1fr; }
+      .loja-grid { grid-template-columns: repeat(2, 1fr); }
+      .wishlist-grid { grid-template-columns: repeat(2, 1fr); }
+      nav .nav-links { display: none; }
+      .regras-box { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      Miss Trinnity
+      <span>Página Oficial</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#presencial">Sessão Presencial</a></li>
+      <li><a href="#loja">Itens</a></li>
+      <li><a href="#wishlist">Lista de Desejos</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text reveal">
+      <div class="hero-eyebrow">Bem-vinda ao meu mundo</div>
+      <h1>Miss<br><em>Trinnity</em></h1>
+      <div class="hero-subtitle">Suave por fora. Sádica por dentro.</div>
+      <p class="hero-desc">
+        Aqui você encontra tudo sobre minhas práticas favoritas, sessões presenciais, itens disponíveis e minha lista de desejos.
+      </p>
+      <div class="hero-btns">
+        <a href="#presencial" class="btn-primary">Agendar sessão</a>
+        <a href="#wishlist" class="btn-ghost">Lista de desejos</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-photo-frame">
+        <div class="hero-photo"></div>
+        <div class="hero-badges">
+          <span class="hero-badge">✦ Sessões presenciais</span>
+          <span class="hero-badge">✦ Lista de desejos</span>
+          <span class="hero-badge">✦ Itens usados</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SOBRE -->
+  <section class="section-sobre" id="sobre">
+    <div class="sobre-layout">
+      <div class="reveal">
+        <span class="tag">Quem sou eu</span>
+        <h2>Miss <em>Trinnity</em></h2>
+        <p>
+          Ao contrário da maioria das Dommes que vestem o clássico preto de látex e couro, eu amo rosa, detalhes fofos e uma estética aparentemente suave. Mas não se engane com minha aparência doce, eu AMO práticas extremas. Sou cruel quando preciso ser, carinhosa quando quero.
+        </p>
+        <ul class="sobre-detalhes">
+          <li>
+            <span class="icon">📍</span>
+            <div><span class="detalhe-label">Localização</span> São Paulo, SP — Brasil</div>
+          </li>
+          <li>
+            <span class="icon">🌐</span>
+            <div><span class="detalhe-label">Twitter</span> <a href="https://twitter.com/Cash4Trinnity" target="_blank">@Cash4Trinnity</a></div>
+          </li>
+          <li>
+            <span class="icon">💌</span>
+            <div><span class="detalhe-label">Contato</span>
+              <a href="https://twitter.com/Cash4Trinnity" target="_blank">Twitter</a> e <a href="https://wa.me/55SEUNUMERO" target="_blank">Telegram</a>
+            </div>
+          </li>
+          <li>
+            <span class="icon">✨</span>
+            <div><span class="detalhe-label">Métodos de envio</span> 
+              <a href="https://livepix.gg/emchamas" target="_blank">LivePix</a>,
+<a href="https://throne.com/cash4trinnity" target="_blank">Throne</a>,
+Gift Card (
+<a href="https://www.seagm.com/pt/paypal-gift-card-usd" target="_blank">Paypal</a>,
+<a href="https://www.g2a.com/category/travel-c4056?query=uber+blr" target="_blank">Uber</a> ou 
+<a href="https://www.seagm.com/google-play-gift-card-brazil?ps=Search-Results:Related-cards" target="_blank">Google Play</a> ), você tambem pode enviar crypto (BTC, ETH e USDC), basta mandar dm pedindo o endereço
+
+
+
+
+            
+            
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal" style="transition-delay: 0.15s;">
+        <span class="tag">Destaques</span>
+        <h2>Minhas práticas<br><em>favoritas</em> em sessões</h2>
+        <ul class="sobre-detalhes" style="margin-top: 16px;">
+          <li>
+            <span class="icon">🔥</span>
+            <div>
+              <span class="detalhe-label">Extremo</span>
+              Ballbusting & Tortura Genital (CBT)<br>
+              Trampling & Pisar nas Bolas<br>
+              Tortura & Castigos Físicos<br>
+              Spanking & Tapas na Cara<br>
+              Wax Play, Privação Sensorial<br>
+              Humilhação & Degradação
+            </div>
+          </li>
+          <li>
+            <span class="icon">❄️</span>
+            <div>
+              <span class="detalhe-label">Suave</span>
+              Spitting<br>Pet Play<br>Dominação tecnológica<br>
+              Podolatria & Adoração de Botas<br>Mobília Humana
+            </div>
+          </li>
+          <li>
+            <span class="icon">🎁</span>
+            <div><span class="detalhe-label">Financeiro</span> Findom<br>Cashmeet</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRESENCIAL -->
+  <section class="section-presencial" id="presencial">
+    <div class="presencial-header reveal">
+      <span class="tag">Sessão Presencial</span>
+      <h2>Experiências <em>ao vivo</em>inesquecíveis</h2>
+      <p>Cada sessão é planejada para ser única.</p>
+    </div>
+
+ <!-- SESSÃO 01 -->
+<div class="presencial-grid">
+      <div class="presencial-card destaque reveal">
+        <span class="card-num">✦ Duração:</span>
+        <h3>30-35 minutos</h3>
+        <p class="card-para">Perfeito para uma dose rápida de podolatria e/ou
+		adoração de botas.</p>
+        <div class="card-preco">
+          <span class="preco-label">Investimento</span>
+          <div class="preco-valor">R$ 590</div>
+        </div>
+        <a href="https://t.me/TrinniContact?text=Oi%20Senhorita%20Trinnity%2C%20gostaria%20de%20saber%20sua%20disponibilidade%20para%20uma%20sess%C3%A3o%20presencial." target="_blank" class="card-btn">Confirmar agora</a>
+      </div>
+
+
+ <!-- SESSÃO 02 -->
+      <div class="presencial-card reveal">
+        <span class="card-num">✦ Duração:</span>
+        <h3>1 hora</h3>
+        <p class="card-para">-</p>
+        <div class="card-preco">
+          <span class="preco-label">Investimento</span>
+          <div class="preco-valor">R$ 850</div>
+        </div>
+        <a href="https://t.me/TrinniContact?text=Oi%20Senhorita%20Trinnity%2C%20gostaria%20de%20saber%20sua%20disponibilidade%20para%20uma%20sess%C3%A3o%20presencial." target="_blank" class="card-btn">Confirmar agora</a>
+      </div>
+
+
+ <!-- SESSÃO 03 -->
+      <div class="presencial-card reveal">
+        <span class="card-num">✦ Duração:</span>
+        <h3>1 hora e 30 minutos</h3>
+        <p class="card-para">-</p>
+        <div class="card-preco">
+          <span class="preco-label">Investimento</span>
+          <div class="preco-valor">R$ 1.200</div>
+        </div>
+        <a href="https://t.me/TrinniContact?text=Ola%20Senhorita%20Trinnity%2C%20gostaria%20de%20saber%20sua%20disponibilidade%20para%20uma%20sess%C3%A3o%20presencial." target="_blank" class="card-btn">Confirmar agora</a>
+      </div>
+
+
+ <!-- SESSÃO 04 -->
+
+      <div class="presencial-card reveal">
+        <span class="card-num">✦ Duração:</span>
+        <h3>2 horas</h3>
+        <p class="card-para">-</p>
+        <div class="card-preco">
+          <span class="preco-label">Investimento</span>
+          <div class="preco-valor">R$ 1.550</div>
+        </div>
+        <a href="https://t.me/TrinniContact?text=Ola%20Senhorita%20Trinnity%2C%20gostaria%20de%20saber%20sua%20disponibilidade%20para%20uma%20sess%C3%A3o%20presencial." target="_blank" class="card-btn">Confirmar agora</a>
+      </div>
+    </div>
+
+    <div class="presencial-info reveal">
+      <div class="info-bloco">
+        <span class="info-icon">🔒</span>
+        <div>
+          <h4>Privacidade total</h4>
+          <p>Discrição e sigilo absolutos em todas as sessões, sem exceção.</p>
+        </div>
+      </div>
+      <div class="info-bloco">
+        <span class="info-icon">📅</span>
+        <div>
+          <h4>Agendamento</h4>
+          <p>Agende com no mínimo 24h de antecedência.</p>
+        </div>
+      </div>
+      <div class="info-bloco">
+        <span class="info-icon">🩷</span>
+        <div>
+          <h4>Experiência personalizada</h4>
+          <p>Cada sessão é pensada para trazer a melhor experiência para nós dois.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGRAS -->
+    <div class="regras-box reveal">
+      <span class="tag">Regras & Protocolo</span>
+      <ul class="regras-lista">
+        <li class="regra-item">
+          <span class="r-icon">✦</span>
+          <p>Todos os custos de deslocamento e local (hotel/motel/Airbnb) são de responsabilidade exclusiva do submisso.</p>
+        </li>
+        <li class="regra-item">
+          <span class="r-icon">✦</span>
+          <p>Exijo <strong>24h de antecedência mínima</strong> para agendamento.</p>
+        </li>
+        <li class="regra-item">
+          <span class="r-icon">✦</span>
+          <p>Um sinal de <strong>50% do valor</strong> deve ser pago no momento da confirmação. Inegociável e não reembolsável.</p>
+        </li>
+        <li class="regra-item">
+          <span class="r-icon">✦</span>
+          <p><strong>Não atendo qualquer pessoa.</strong> Para ter o privilégio de uma sessão comigo, você deve ter me presenteado com no mínimo <strong>R$ 1.000 nos últimos 45 dias</strong> (tributos ou presentes) ou ter chamado minha atenção positivamente.</p>
+        </li>
+        <li class="regra-item">
+          <span class="r-icon">✦</span>
+          <p>Respeito total aos limites combinados previamente, seguindo as diretrizes "Safe, Sane & Consensual".</p>
+        </li>
+        <li class="regra-item">
+          <span class="r-icon">✦</span>
+          <p><strong>Aftercare não é opcional.</strong> Após cada sessão teremos alguns minutos para conversar sobre como você se sentiu.</p>
+        </li>
+        <li class="regra-item">
+          <span class="r-icon">✦</span>
+          <p>Em todas as minhas sessões conto com <strong>acompanhamento de segurança profissional</strong>. Essa medida faz parte do meu protocolo pessoal de segurança, conforto e integridade física, sendo portanto <u>inegociável</u>!</p>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WISHLIST -->
+  <section class="section-wishlist" id="wishlist">
+    <div class="wishlist-header reveal">
+      <span class="tag">Lista de Desejos</span>
+      <h2>O que estou <em>desejando</em></h2>
+      <p>Clique na imagem do item para ser redirecionada à loja. Veja o valor do presente e envie no LivePix.  
+      <b> obs:</b> Devido à taxa do LivePix, lembre-se de adicionar 5% ao valor do presente para que o valor correto seja recebido.✦ </p>
+    </div>
+    <div class="wishlist-grid" id="wishlistGrid"></div>
+  </section>
+
+  <div class="divider"></div>
+
+ <!-- LOJA -->
+  <section class="section-loja" id="Loja">
+    <div class="loja-header reveal">
+      <span class="tag">Itens Usados</span>
+      <h2>Itens <em>disponíveis</em><br</h2>
+    </div>
+<span class="hero-badge">Em breve...</span>
+    <div class="loja-grid" id="lojaGrid">
+      <!-- Items gerados via JS -->
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+
+
+  <!-- CTA -->
+  <section class="section-cta">
+    <h2>Pronta para uma<br>experiência <em>inesquecível?</em></h2>
+    <p>Agende sua sessão ou venha me presentear.</p>
+    <div class="cta-btns">
+      <a href="#presencial" class="btn-primary">Agendar sessão</a>
+      <a href="https://t.me/TrinniContact" target="_blank" class="btn-ghost">Falar no Telegram</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Miss Trinnity</span>
+    <span>© 2026 Miss Trinnity · Todos os direitos reservados</span>
+    <div class="footer-links">
+      <a href="https://twitter.com/Cash4Trinnity" target="_blank">Twitter</a>
+      <a href="https://t.me/TrinniContact" target="_blank">Telegram</a>
+    </div>
+  </footer>
+
+  <script>
+    // ---- DADOS DA LOJA (edite aqui) ----
+    var LOJA_ITEMS = [
+      // Exemplo:
+      // { badge: 'Em Breve', nome: 'Meia usada', desc: 'Par de meias usadas por mim.', preco: 'R$ 180 + Frete', link: 'https://wa.me/55SEUNUMERO' }
+    ];
+
+    // ---- DADOS DA WISHLIST (edite aqui) ----
+    var WISHLIST = [
+      {
+        img: 'https://files.catbox.moe/t4790a.jpg',
+        nome: 'Chicote Rosa',
+        loja: 'BDSM Brazil',
+        link: 'https://bdsmbrazil.com/produto/chicote-de-couro-pu-2m-rosa/'
+      },
+      {
+        img: 'https://http2.mlstatic.com/D_NQ_NP_2X_892318-MLA99419882190_112025-F.webp',
+        nome: 'Galaxy Tab A11 (Prata)',
+        loja: 'Mercado Livre',
+        link: 'https://www.mercadolivre.com.br/galaxy-tab-a11-64gb-4gb-ram-tela-de-87-bateria-5100mah-cmera-frontal-5mp-cmera-traseira-8mp-wifi-prata/p/MLB59324352'
+      },
+      {
+        img: 'https://m.media-amazon.com/images/I/61Xq2xhHMWL._AC_SL1200_.jpg',
+        nome: 'Kit Instax Mini 12 + pack 10 fotos e Bolsa Rosa',
+        loja: 'Amazon',
+        link: 'https://www.amazon.com.br/C%C3%A2mera-Instax-fotos-Spray-Bolsa/dp/B0CT8MKHVZ/'
+      },
+      {
+        img: 'https://loja.masmorravelas.com.br/cdn/shop/files/VelaPalitowaxplaycalorbaixokit2-MasmorraVelas.png',
+        nome: 'Vela Wax Play - Kit Calor Baixo',
+        loja: 'Masmorra Velas',
+        link: 'https://loja.masmorravelas.com.br/products/vela-artesanal-cera-vegetal-40g-kit-iniciante-4un'
+      },
+      {
+        img: 'https://http2.mlstatic.com/D_NQ_NP_2X_745028-MLA99914844613_112025-F.webp',
+        nome: 'Kindle Verde',
+        loja: 'Amazon',
+        link: 'https://www.amazon.com.br/kindle-16gb-verde/dp/B0CP31QS6R?th=1'
+      }
+    ];
+
+    // ---- RENDER LOJA ----
+    var lojaEl = document.getElementById('lojaGrid');
+    LOJA_ITEMS.forEach(function(item) {
+      var div = document.createElement('div');
+      div.className = 'loja-item';
+      div.innerHTML =
+        '<div class="loja-info">' +
+          (item.badge ? '<span class="loja-badge-top">' + item.badge + '</span>' : '') +
+          '<h4>' + item.nome + '</h4>' +
+          '<p class="loja-desc">' + item.desc + '</p>' +
+          '<div class="loja-preco">' +
+            '<span class="loja-valor">' + item.preco + '</span>' +
+            '<a href="' + item.link + '" target="_blank" class="loja-btn">Comprar</a>' +
+          '</div>' +
+        '</div>';
+      lojaEl.appendChild(div);
+    });
+
+    // ---- RENDER WISHLIST ----
+    var wishEl = document.getElementById('wishlistGrid');
+    WISHLIST.forEach(function(item) {
+      var div = document.createElement('div');
+      div.className = 'wish-item';
+      div.innerHTML =
+        '<div class="wish-img">' +
+          '<a href="' + item.link + '" target="_blank" style="display:block;width:100%;height:100%;">' +
+            '<div class="wish-img-inner" style="width:100%;height:100%;' + (item.img ? 'background-image:url(\'' + item.img + '\');background-size:cover;background-position:center;' : 'background:var(--deep);') + '"></div>' +
+          '</a>' +
+          (!item.img ?
+            '<div class="wish-img-placeholder">' +
+              '<svg viewBox="0 0 32 32" fill="none"><rect x="2" y="6" width="28" height="20" rx="2" stroke="#FFA5BC" stroke-width="0.6"/><circle cx="10" cy="13" r="3" stroke="#FFA5BC" stroke-width="0.6"/><path d="M2 26l8-7 5 4 5-5 10 8" stroke="#FFA5BC" stroke-width="0.6"/></svg>' +
+              '<span>Imagem do item</span>' +
+            '</div>' : '') +
+          '<div class="wish-overlay"><span class="wish-overlay-icon">🔗</span></div>' +
+        '</div>' +
+        '<div class="wish-info">' +
+          '<h4>' + item.nome + '</h4>' +
+          '<span class="wish-loja">' + item.loja + '</span>' +
+        '</div>';
+      wishEl.appendChild(div);
+    });
+
+    // ---- SCROLL REVEAL ----
+    var reveals = document.querySelectorAll('.reveal');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(function(el) { observer.observe(el); });
+  </script>
+
+</body>
+</html>
