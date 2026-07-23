@@ -330,12 +330,13 @@
     /* REGRAS */
     .regras-box { margin-top: 48px; border: 0.5px solid rgba(252,106,148,0.15); padding: 40px 48px; background: var(--black); }
     .regras-box .tag { margin-bottom: 24px; display: block; }
-    .regras-lista { list-style: none; }
+    .regras-lista { list-style: none; columns: 2; column-gap: 48px; }
     .regra-item {
       display: flex; gap: 16px; padding: 14px 0;
       border-bottom: 0.5px solid rgba(252,106,148,0.08);
       font-size: 14px; color: rgba(255,240,244,0.7);
       font-weight: 300; line-height: 1.7; align-items: flex-start;
+      break-inside: avoid; -webkit-column-break-inside: avoid;
     }
     .regra-item:last-child { border-bottom: none; }
     .regra-item .r-icon { color: var(--orchid); font-size: 14px; flex: 0 0 16px; margin-top: 4px; }
@@ -369,7 +370,7 @@
     .section-intro h1 em { color: var(--blush); font-style: italic; }
     .section-intro p {
       font-size: 15px; color: rgba(242,217,232,0.55);
-      font-weight: 300; max-width: 640px; line-height: 1.9;
+      font-weight: 300; max-width: 704px; line-height: 1.9;
       position: relative; z-index: 1; margin: 0 auto;
     }
     .section-intro p b { display: inline; }
@@ -438,6 +439,74 @@
     .cat-empty {
       font-size: 13px; color: rgba(242,217,232,0.3); font-weight: 300; font-style: italic;
       padding: 24px 0; border-top: 0.5px dashed rgba(252,106,148,0.15);
+    }
+
+    /* LOJA */
+    .section-loja { background: var(--black); padding: 96px 6vw; }
+    .loja-header { max-width: 620px; margin-bottom: 56px; }
+    .loja-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 400; line-height: 1.2; color: var(--cream); margin-top: 10px;
+    }
+    .loja-header h2 em { color: var(--blush); font-style: italic; }
+    .loja-header p {
+      font-size: 15px; color: rgba(242,217,232,0.45);
+      font-weight: 300; line-height: 1.9; margin-top: 18px;
+    }
+    .loja-grid { display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 2px; row-gap: 20px; }
+    .loja-card {
+      background: var(--deep); padding: 36px 28px; position: relative;
+      display: flex; flex-direction: column; border-top: 2px solid transparent;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .loja-card:hover { border-top-color: var(--orchid); background: #200f15; }
+    .loja-badge {
+      position: absolute; top: 22px; right: 22px;
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 5px 10px; font-weight: 500; border: 0.5px solid; white-space: nowrap;
+    }
+    .loja-badge.novo { color: var(--orchid); border-color: rgba(252,106,148,0.5); background: rgba(252,106,148,0.08); }
+    .loja-badge.limitado { color: var(--blush); border-color: rgba(255,165,188,0.5); background: rgba(74,20,40,0.5); }
+    .loja-badge.em-breve { color: var(--muted); border-color: rgba(138,112,120,0.4); background: transparent; }
+    .loja-card h3 {
+      font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 400;
+      color: var(--cream); margin-bottom: 10px; padding-right: 78px;
+      line-height: 1.3;
+    }
+    .loja-desc {
+      font-size: 12px; color: rgba(242,217,232,0.4); font-weight: 300; font-style: italic;
+      line-height: 1.6; margin-bottom: 22px; padding-bottom: 22px;
+      border-bottom: 0.5px solid rgba(252,106,148,0.1); flex: 1;
+    }
+    .loja-preco { margin-top: auto; }
+    .loja-preco .preco-label { display: block; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orchid); margin-bottom: 6px; }
+    .loja-preco .preco-valor { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 400; color: var(--blush); }
+    .loja-card .card-btn { margin-top: 20px; }
+    .loja-card.indisponivel .card-btn { opacity: 0.35; pointer-events: none; }
+
+    /* FAQ */
+    .section-faq { background: var(--deep); padding: 96px 6vw; }
+    .faq-header { max-width: 620px; margin-bottom: 56px; }
+    .faq-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 400; line-height: 1.2; color: var(--cream); margin-top: 10px;
+    }
+    .faq-header h2 em { color: var(--blush); font-style: italic; }
+    .faq-header p {
+      font-size: 15px; color: rgba(242,217,232,0.45);
+      font-weight: 300; line-height: 1.9; margin-top: 18px;
+    }
+    .faq-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+    .faq-item { padding: 20px 0; border-bottom: 0.5px solid rgba(252,106,148,0.12); }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item h4 {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 16px; font-weight: 400; color: var(--blush); line-height: 1.4; margin-bottom: 10px;
+    }
+    .faq-item p {
+      font-size: 13px; color: rgba(242,217,232,0.55); font-weight: 300; line-height: 1.8;
     }
 
     /* CTA */
@@ -509,8 +578,11 @@
       .presencial-grid { grid-template-columns: 1fr; }
       .presencial-info { grid-template-columns: 1fr; }
       .wishlist-grid { grid-template-columns: repeat(2, 1fr); }
+      .loja-grid { grid-template-columns: 1fr 1fr; row-gap: 32px; }
+      .faq-columns { grid-template-columns: 1fr; gap: 8px; }
       .section-intro { padding-top: 110px; }
       .regras-box { padding: 28px 24px; }
+      .regras-lista { columns: 1; }
     }
   </style>
 </head>
@@ -527,6 +599,8 @@
       <li><a href="#destaques">Praticas</a></li>
       <li><a href="#presencial">Sessão Presencial</a></li>
       <li><a href="#wishlist">Lista de Desejos</a></li>
+      <li><a href="#loja">Loja</a></li>
+      <li><a href="#faq">FAQ</a></li>
     </ul>
   </nav>
 
@@ -601,7 +675,7 @@
   <section class="section-destaques" id="destaques">
     <div class="destaques-header reveal">
       <span class="tag">Destaques</span>
-      <h2>Minhas kinks & práticas <em>favoritas</em></h2>
+      <h2>Minhas <em>kinks</em> & <em>práticas</em> favoritas</h2>
       <p>Essa é só uma fração das kinks que gosto, sou kinky friendly então pode perguntar 
         caso algo não esteja especificado aqui</p>
     </div>
@@ -675,7 +749,7 @@
   <section class="section-presencial" id="presencial">
     <div class="presencial-header reveal">
       <span class="tag">Sessão Presencial</span>
-      <h2>Experiências <em>ao vivo</em> inesquecíveis</h2>
+      <h2>Experiências <em>ao vivo</em>.</h2>
       <p>Cada sessão é planejada para ser única.</p>
     </div>
 
@@ -691,7 +765,7 @@
         </ul>
         <div class="card-preco">
           <span class="preco-label">Investimento</span>
-          <div class="preco-valor consulta">Valores sob consulta.</div>
+          <div class="preco-valor consulta">Sob consulta.</div>
         </div>
         <a href="https://t.me/MissTrinnity?text=Oi%20Senhorita%20Trinnity%2C%20gostaria%20de%20saber%20sua%20disponibilidade%20para%20uma%20sess%C3%A3o%20presencial." target="_blank" class="card-btn">Consultar disponibilidade</a>
       </div>
@@ -707,7 +781,7 @@
         </ul>
         <div class="card-preco">
           <span class="preco-label">Investimento</span>
-          <div class="preco-valor consulta">Valores sob consulta.</div>
+          <div class="preco-valor consulta">Sob consulta.</div>
         </div>
         <a href="https://t.me/MissTrinnity?text=Oi%20Senhorita%20Trinnity%2C%20gostaria%20de%20saber%20sua%20disponibilidade%20para%20uma%20sess%C3%A3o%20presencial." target="_blank" class="card-btn">Consultar disponibilidade</a>
       </div>
@@ -722,7 +796,7 @@
         </ul>
         <div class="card-preco">
           <span class="preco-label">Investimento</span>
-          <div class="preco-valor consulta">Valores sob consulta.</div>
+          <div class="preco-valor consulta">Sob consulta.</div>
         </div>
         <a href="https://t.me/MissTrinnity?text=Ola%20Senhorita%20Trinnity%2C%20gostaria%20de%20saber%20sua%20disponibilidade%20para%20uma%20sess%C3%A3o%20presencial." target="_blank" class="card-btn">Consultar disponibilidade</a>
       </div>
@@ -737,7 +811,7 @@
         </ul>
         <div class="card-preco">
           <span class="preco-label">Investimento</span>
-          <div class="preco-valor consulta">Valores sob consulta.</div>
+          <div class="preco-valor consulta">Sob consulta.</div>
         </div>
         <a href="https://t.me/MissTrinnity?text=Ola%20Senhorita%20Trinnity%2C%20gostaria%20de%20saber%20sua%20disponibilidade%20para%20uma%20sess%C3%A3o%20presencial." target="_blank" class="card-btn">Consultar disponibilidade</a>
       </div>
@@ -783,26 +857,30 @@
           <span class="r-icon">✦</span>
           <p>Exijo <strong>72h de antecedência mínima</strong> para agendamento.</p>
         </li>
+
         <li class="regra-item">
           <span class="r-icon">✦</span>
-          <p>Todos os custos de deslocamento e local (hotel/motel/Airbnb) são de responsabilidade exclusiva do submisso.</p>
+          <p>Em todas as minhas sessões conto com <strong>acompanhamento de segurança profissional</strong>. Essa medida faz parte do meu protocolo pessoal de segurança, conforto e integridade física, sendo portanto <u>inegociável</u>!</p>
         </li>
+        <li class="regra-item">
+          <span class="r-icon">✦</span>
+          <p>Todos os custos de deslocamento e local (hotel/motel/Airbnb) são de <strong>responsabilidade exclusiva do submisso</strong>.</p>
+        </li>
+
+        
         <li class="regra-item">
           <span class="r-icon">✦</span>
           <p>Um sinal de <strong>50% do valor</strong> deve ser pago no momento da confirmação. Inegociável e não reembolsável.</p>
         </li>
         <li class="regra-item">
           <span class="r-icon">✦</span>
-          <p>Respeito total aos limites combinados previamente, seguindo as diretrizes "Safe, Sane &amp; Consensual".</p>
+          <p>Respeito total aos limites combinados previamente. Sigo as bases <strong>RACK</strong> e <strong>PRICK</strong></p>
         </li>
         <li class="regra-item">
           <span class="r-icon">✦</span>
           <p><strong>Aftercare não é opcional.</strong> Após cada sessão teremos alguns minutos para conversar sobre como você se sentiu.</p>
         </li>
-        <li class="regra-item">
-          <span class="r-icon">✦</span>
-          <p>Em todas as minhas sessões conto com <strong>acompanhamento de segurança profissional</strong>. Essa medida faz parte do meu protocolo pessoal de segurança, conforto e integridade física, sendo portanto <u>inegociável</u>!</p>
-        </li>
+        
       </ul>
     </div>
   </section>
@@ -818,7 +896,10 @@
       chamar no DM que eu te explico como.  
       Itens com a faixa verde "Recebido" já foram presenteados.  
       Pra me presentear, é só mandar o valor em algum meus métodos 
-      e colocar o nome do presente na nota.
+      e colocar o nome do presente na nota.<br> <u>AMO produtos de skincare, 
+        cuidados para os pés e cabelo, além de sandalias / saltos, roupinhas 
+        fofas e acessórios pro celular/tablet. Então, pode mandar mensagem 
+        perguntando se tem algum item que quero no momento, mas seja direto!</u>
     </p>
   </section>
 
@@ -827,6 +908,73 @@
   <!-- LISTA DE DESEJOS (uma única seção, sem categorias) -->
   <section class="section-categoria">
     <div class="wishlist-grid" id="wishlistGrid"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- LOJA -->
+  <section class="section-loja" id="loja">
+    <div class="loja-header reveal">
+      <span class="tag">Loja</span>
+      <h2>Itens à <em>venda</em></h2>
+      <p>Alguns itens exclusivos e/ou com  edição limitada. Me chame no Telegram 
+        para combinarmos a entrega (apenas na cidade de São Paulo).</p>
+    </div>
+
+    <div class="loja-grid" id="lojaGrid"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section class="section-faq" id="faq">
+    <div class="faq-header reveal">
+      <span class="tag">Perguntas Frequentes</span>
+      <h2><em>Leia antes</em> de entrar em contato</h2> 
+      <p>As dúvidas mais comuns que recebo. Se ainda ficou alguma coisa sem resposta, é só me chamar no Telegram.</p>
+    </div>
+
+    <div class="faq-columns">
+      <!-- COLUNA 1 -->
+      <div class="faq-col">
+        <div class="faq-item reveal">
+          <h4>Como funciona o tributo inicial?</h4>
+          <p>É um valor simbólico de entrada para iniciar contato comigo, seja para conversar, agendar sessão ou apenas se apresentar como submisso.</p>
+        </div>
+        <div class="faq-item reveal">
+          <h4>Você atende fora de São Paulo?</h4>
+          <p>Sessões presenciais acontecem APENAS na cidade de São Paulo.</p>
+        </div>
+
+      </div>
+
+      <!-- COLUNA 2 -->
+      <div class="faq-col">
+        <div class="faq-item reveal">
+          <h4>Você tem tabela de preços ou menu de serviços?</h4>
+          <p>Não. Eu sei que você está acostumado com esse tipo de "Domme", 
+            mas aqui as coisas não são assim.</p>
+        </div>
+        
+    
+        <div class="faq-item reveal">
+          <h4>Como faço para agendar uma sessão?</h4>
+          <p>Envie inicial em algum dos meus metodos com pelo menos 72h de antecedência. Deixe um link, e-mail ou @ pra contato.</p>
+        </div>
+        
+      </div>
+
+      <!-- COLUNA 3 -->
+      <div class="faq-col">
+        <div class="faq-item reveal">
+          <h4>Você faz personalizados, vende packs de fotos ou grupo de prévia?</h4>
+          <p>Não. Apenas quem me serve digninamente tem o privilégio de receber fotos e 
+            videos exclusivos. Entretanto existem alguns momentos em faço alguns vídeos e 
+            deixo disponivel por curto prazo, fique atento ao twitter e meu grupo no 
+            telegram, pois sempre aviso por lá </p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <div class="divider"></div>
@@ -970,6 +1118,59 @@
 
     WISHLIST.forEach(function(item) {
       wishlistGrid.appendChild(criarWishItem(item));
+    });
+
+    // ---- DADOS DA LOJA (edite aqui) ----
+    // badge: 'novo' | 'limitado' | 'em-breve' | '' (sem tag)
+    // disponivel: false = deixa o botão de compra desativado (ideal para "em breve")
+    var LOJA = [
+     
+      {
+        badge: 'em-breve',
+        nome: 'Toilet Delivery',
+        desc: 'Um pouco do meu chocolate ou suco dourado especial, feito para você que é uma privadinha imunda.',
+        preco: 'Consulte',
+        link: 'https://t.me/MissTrinnity',
+        disponivel: false
+      },
+      {
+        badge: 'limitado',
+        nome: 'Lixo ao Luxo',
+        desc: 'O que é lixo para mim, é luxo para você. Absorvente usado, camisinhas usadas, papel higienico, entre outros.',
+        preco: 'Consulte',
+        link: 'https://t.me/MissTrinnity',
+        disponivel: true
+      },
+       {
+        badge: 'limitado',
+        nome: 'Meia Usada',
+        desc: 'Par de meias usadas por mim, disponibilidade em breve.',
+        preco: 'R$ 120,00 + Frete',
+        link: 'https://t.me/MissTrinnity',
+        disponivel: true
+      },
+    ];
+
+    // ---- RENDER LOJA ----
+    var lojaGrid = document.getElementById('lojaGrid');
+
+    function criarLojaCard(item) {
+      var div = document.createElement('div');
+      div.className = 'loja-card' + (item.disponivel === false ? ' indisponivel' : '');
+      div.innerHTML =
+        (item.badge ? '<span class="loja-badge ' + item.badge + '">' + item.badge.replace('-', ' ') + '</span>' : '') +
+        '<h3>' + item.nome + '</h3>' +
+        '<p class="loja-desc">' + item.desc + '</p>' +
+        '<div class="loja-preco">' +
+          '<span class="preco-label">Investimento</span>' +
+          '<div class="preco-valor">' + item.preco + '</div>' +
+        '</div>' +
+        '<a href="' + item.link + '" target="_blank" class="card-btn">' + (item.disponivel === false ? 'Em breve' : ' Solicitar') + '</a>';
+      return div;
+    }
+
+    LOJA.forEach(function(item) {
+      lojaGrid.appendChild(criarLojaCard(item));
     });
 
     // ---- SCROLL REVEAL ----
